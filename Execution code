@@ -1,0 +1,15 @@
+!git clone https://github.com/ultralytics/yolov5  # clone
+%cd yolov5
+%pip install -qr requirements.txt  # install
+import torch
+import utils
+display = utils.notebook_init()  # checks
+
+
+
+
+!unzip -q ../fung1.zip -d ../
+
+!python train.py --img 640 --batch 16 --epochs 60 --data dataset.yaml --weights yolov5s.pt --nosave --cache
+
+!python detect.py --weights runs/train/exp3/weights/last.pt --img 640 --conf 0.25 --source /content/fung1/images/val/13.jpeg
